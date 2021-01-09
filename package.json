@@ -1,0 +1,20 @@
+{
+  "name": "@astronautlabs/datastore",
+  "version": "1.0.0",
+  "description": "Isomorphic, abstracted, Firestore-compatible NoSQL data storage library",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "scripts": {
+    "build": "tsc -p . && copyfiles -f src/firebase/package.json dist/firebase && copyfiles -f package.json dist",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "firebase": "^7.17.1",
+    "firebase-admin": "^9.0.0"
+  },
+  "devDependencies": {
+    "copyfiles": "^2.3.0"
+  }
+}

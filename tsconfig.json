@@ -1,0 +1,36 @@
+{
+    "compilerOptions": {
+        "outDir": "./dist",
+        "declaration": true,
+        "declarationDir": "./dist",
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "sourceMap": true,
+        "target": "es5",
+        "lib": [
+            "es2016",
+            "dom"
+        ]
+    },
+    "include": [
+        "./src/**/*.ts",
+        "./test/**/*.ts",
+        "./*.ts"
+    ],
+    "typedocOptions": {
+        "mode": "file",
+        "theme": "markdown",
+		"out": "docs",
+		"target": "ES5",
+		"excludeExternals": true,
+		"excludePrivate": true,
+		"externalPattern": "**/node_modules/**",
+		"exclude": "**/node_modules/**,**/dist*/**,**/example/**,**/*.test.ts",
+		"categoryOrder": [
+		  "Entrypoint",
+		  "*"
+		]
+	}
+}
