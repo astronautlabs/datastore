@@ -26,6 +26,7 @@ export interface DataStore {
     listAll<T extends Storable>(collectionPath : string, limit? : number, startAfter? : string): Promise<T[]>;
     watchAll<T extends Storable>(collectionPath : string) : Observable<T[]>;
     watch<T extends Storable>(collectionPath : string) : Observable<T>;
+    set<T extends Storable>(docPath: string, data: T): Promise<void>;
     update<T extends Storable>(docPath : string, data : Partial<T>): Promise<void>;
     delete(docPath : string): Promise<void>;
     mirrorInTransaction(txn : Transaction, primaryKey : string, mirrorKeys : string[], data?): Promise<void>;
