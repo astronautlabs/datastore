@@ -1,6 +1,6 @@
 {
   "name": "@astronautlabs/datastore",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Isomorphic, abstracted, Firestore-compatible NoSQL data storage library",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
