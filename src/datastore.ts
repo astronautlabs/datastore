@@ -1,3 +1,5 @@
+import { Observable } from 'rxjs';
+
 export interface Storable {
     id? : string;
 }
@@ -22,6 +24,8 @@ export interface DataStore {
     read<T extends Storable>(docPath : string): Promise<T>;
     query<T extends Storable>(collectionPath : string): Query<T>;
     listAll<T extends Storable>(collectionPath : string, limit? : number, startAfter? : string): Promise<T[]>;
+    watchAll<T extends Storable>(collectionPath : string) : Observable<T[]>;
+    watch<T extends Storable>(collectionPath : string) : Observable<T>;
     update<T extends Storable>(docPath : string, data : Partial<T>): Promise<void>;
     delete(docPath : string): Promise<void>;
     mirrorInTransaction(txn : Transaction, primaryKey : string, mirrorKeys : string[], data?): Promise<void>;
