@@ -3,7 +3,7 @@
         "outDir": "./dist",
         "declaration": true,
         "declarationDir": "./dist",
-        "module": "ES2015",
+        "module": "commonjs",
         "moduleResolution": "node",
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
