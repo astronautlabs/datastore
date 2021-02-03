@@ -18,14 +18,25 @@ export interface Query<T> {
     get() : Promise<T[]>;
 }
 
+export interface Order {
+    field : string;
+    direction : 'asc' | 'desc';
+}
+
+export interface CollectionParams {
+    order? : Order;
+    limit? : number;
+    startAfter? : string;
+}
+
 export interface DataStore {
     create<T extends Storable>(collectionPath : string, data : T): Promise<T>;
     transact<T>(handler : (txn : Transaction) => Promise<T>);
     read<T extends Storable>(docPath : string): Promise<T>;
     query<T extends Storable>(collectionPath : string): Query<T>;
-    listAll<T extends Storable>(collectionPath : string, limit? : number, startAfter? : string): Promise<T[]>;
-    watchAll<T extends Storable>(collectionPath : string) : Observable<T[]>;
-    watch<T extends Storable>(collectionPath : string) : Observable<T>;
+    listAll<T extends Storable>(collectionPath : string, params? : CollectionParams): Promise<T[]>;
+    watchAll<T extends Storable>(collectionPath : string, params? : CollectionParams) : Observable<T[]>;
+    watch<T extends Storable>(docPath : string) : Observable<T>;
     set<T extends Storable>(docPath: string, data: T): Promise<void>;
     update<T extends Storable>(docPath : string, data : Partial<T>): Promise<void>;
     delete(docPath : string): Promise<void>;
