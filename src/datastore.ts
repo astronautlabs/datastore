@@ -29,6 +29,10 @@ export interface CollectionParams {
     startAfter? : string;
 }
 
+export interface CollectionChange<T> {
+    type : 'added' | 'modified' | 'removed';
+    document : T;
+}
 export interface DataStore {
     create<T extends Storable>(collectionPath : string, data : T): Promise<T>;
     transact<T>(handler : (txn : Transaction) => Promise<T>);
@@ -36,6 +40,7 @@ export interface DataStore {
     query<T extends Storable>(collectionPath : string): Query<T>;
     listAll<T extends Storable>(collectionPath : string, params? : CollectionParams): Promise<T[]>;
     watchAll<T extends Storable>(collectionPath : string, params? : CollectionParams) : Observable<T[]>;
+    watchForChanges<T extends Storable>(collectionPath : string, params? : CollectionParams) : Observable<CollectionChange<T>[]>;
     watch<T extends Storable>(docPath : string) : Observable<T>;
     set<T extends Storable>(docPath: string, data: T): Promise<void>;
     update<T extends Storable>(docPath : string, data : Partial<T>): Promise<void>;
