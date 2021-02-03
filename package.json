@@ -6,7 +6,7 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc -p .",
-    "prepare": "npm run build"
+    "prepublishOnly": "npm run build"
   },
   "author": "Astronaut Labs, LLC",
   "license": "MIT",
