@@ -5,6 +5,10 @@
   "main": "dist/node/index.js",
   "browser": "dist/browser/index.js",
   "types": "dist/index.d.ts",
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "tsc -p .",
     "prepublishOnly": "npm run build"

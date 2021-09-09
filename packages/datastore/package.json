@@ -4,6 +4,10 @@
   "description": "Isomorphic, abstracted, Firestore-compatible NoSQL data storage library",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "tsc -b .",
     "prepublishOnly": "npm run build"
