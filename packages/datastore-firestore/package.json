@@ -1,0 +1,22 @@
+{
+  "name": "@astronautlabs/datastore-firestore",
+  "version": "3.1.1",
+  "description": "Firestore support for @astronautlabs/datastore",
+  "main": "dist/node/index.js",
+  "browser": "dist/browser/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -p .",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "@astronautlabs/datastore": "^3.1.0",
+    "firebase": "^7.17.1",
+    "firebase-admin": "^9.0.0"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^4.1.3"
+  }
+}
