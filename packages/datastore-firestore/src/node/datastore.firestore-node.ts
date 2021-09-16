@@ -3,6 +3,9 @@ import { Observable, ConnectableObservable, Subject } from 'rxjs';
 import { publish } from 'rxjs/operators';
 import * as firebase from 'firebase-admin';
 
+/**
+ * Specify a modifier for a field instead of a direct field value
+ */
 export class FbSentinels implements DataStoreSentinels {
     increment(number: number): unknown {
         return firebase.firestore.FieldValue.increment(number);

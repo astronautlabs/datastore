@@ -3,6 +3,9 @@ import * as firebase from 'firebase';
 import { Observable, Subject, ReplaySubject, ConnectableObservable } from "rxjs";
 import { publish } from "rxjs/operators";
 
+/**
+ * Specify a modifier for a field instead of a direct field value
+ */
 export class FbSentinels implements DataStoreSentinels {
     increment(number: number): unknown {
         return firebase.firestore.FieldValue.increment(number);
@@ -147,7 +150,7 @@ export class FbDataStore implements DataStore {
     }
 
     sentinels = new FbSentinels();
-    
+
     async set<T extends Storable>(docPath: string, data: T): Promise<void> {
         try {
             await this.firestore.doc(docPath).set(data);

@@ -53,6 +53,9 @@ export interface DataStore {
     sentinels? : DataStoreSentinels;
 }
 
+/**
+ * Specify a modifier for a field instead of a direct field value
+ */
 export interface DataStoreSentinels {
     increment(number : number) : unknown;
     serverTimestamp() : unknown;
