@@ -49,4 +49,15 @@ export interface DataStore {
     mirror(primaryKey : string, mirrorKeys : string[], data?): Promise<void>;
     createAndMirror<T extends Storable>(collectionPath : string, data : T, mirrorKeys : string[]): Promise<T>;
     multiUpdate<T extends Storable>(docPaths : string[], data : T): Promise<void>;
+
+    sentinels? : DataStoreSentinels;
+}
+
+export interface DataStoreSentinels {
+    increment(number : number) : unknown;
+    serverTimestamp() : unknown;
+    delete() : unknown;
+    arrayUnion(...elements : any[]) : unknown;
+    arrayRemove(...elements : any[]) : unknown;
+
 }
