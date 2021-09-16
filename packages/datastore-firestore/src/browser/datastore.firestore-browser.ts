@@ -1,7 +1,25 @@
-import { Storable, Query, Transaction, DataStore, CollectionParams, CollectionChange } from "@astronautlabs/datastore";
+import { Storable, Query, Transaction, DataStore, CollectionParams, CollectionChange, DataStoreSentinels } from "@astronautlabs/datastore";
 import * as firebase from 'firebase';
 import { Observable, Subject, ReplaySubject, ConnectableObservable } from "rxjs";
 import { publish } from "rxjs/operators";
+
+export class FbSentinels implements DataStoreSentinels {
+    increment(number: number): unknown {
+        return firebase.firestore.FieldValue.increment(number);
+    }
+    serverTimestamp(): unknown {
+        return firebase.firestore.FieldValue.serverTimestamp();
+    }
+    delete(): unknown {
+        return firebase.firestore.FieldValue.delete();
+    }
+    arrayUnion(...elements: any[]): unknown {
+        return firebase.firestore.FieldValue.arrayUnion(...elements);
+    }
+    arrayRemove(...elements: any[]): unknown {
+        return firebase.firestore.FieldValue.arrayRemove(...elements);
+    }
+}
 
 export class FbTransaction implements Transaction {
     constructor(
@@ -128,6 +146,8 @@ export class FbDataStore implements DataStore {
     ) {
     }
 
+    sentinels = new FbSentinels();
+    
     async set<T extends Storable>(docPath: string, data: T): Promise<void> {
         try {
             await this.firestore.doc(docPath).set(data);

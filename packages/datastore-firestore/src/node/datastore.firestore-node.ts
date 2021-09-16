@@ -1,7 +1,25 @@
-import { Storable, Query, Transaction, DataStore, CollectionParams, CollectionChange } from "@astronautlabs/datastore";
+import { Storable, Query, Transaction, DataStore, CollectionParams, CollectionChange, DataStoreSentinels } from "@astronautlabs/datastore";
 import { Observable, ConnectableObservable, Subject } from 'rxjs';
 import { publish } from 'rxjs/operators';
 import * as firebase from 'firebase-admin';
+
+export class FbSentinels implements DataStoreSentinels {
+    increment(number: number): unknown {
+        return firebase.firestore.FieldValue.increment(number);
+    }
+    serverTimestamp(): unknown {
+        return firebase.firestore.FieldValue.serverTimestamp();
+    }
+    delete(): unknown {
+        return firebase.firestore.FieldValue.delete();
+    }
+    arrayUnion(...elements: any[]): unknown {
+        return firebase.firestore.FieldValue.arrayUnion(...elements);
+    }
+    arrayRemove(...elements: any[]): unknown {
+        return firebase.firestore.FieldValue.arrayRemove(...elements);
+    }
+}
 
 interface LazyConnectionOptions<T> {
     start : (subject : Subject<T>) => void;
@@ -164,6 +182,8 @@ export class FbDataStore implements DataStore {
         readonly firestore : firebase.firestore.Firestore
     ) {
     }
+
+    sentinels = new FbSentinels();
 
     async set<T extends Storable>(docPath: string, data: T): Promise<void> {
         try {
