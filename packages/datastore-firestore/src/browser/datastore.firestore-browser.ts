@@ -1,5 +1,6 @@
 import { Storable, Query, Transaction, DataStore, CollectionParams, CollectionChange, DataStoreSentinels } from "@astronautlabs/datastore";
-import * as firebase from 'firebase';
+import * as firebase from 'firebase/app';
+import 'firebase/firestore';
 import { Observable, Subject, ReplaySubject, ConnectableObservable } from "rxjs";
 import { publish } from "rxjs/operators";
 
