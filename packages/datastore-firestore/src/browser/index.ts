@@ -1,5 +1,5 @@
 import { FirebaseConfig } from '../datastore-firebase';
-import * as firebase from 'firebase';
+import * as firebase from 'firebase/app';
 import { FbDataStore } from './datastore.firestore-browser';
 
 export * from '@astronautlabs/datastore';
